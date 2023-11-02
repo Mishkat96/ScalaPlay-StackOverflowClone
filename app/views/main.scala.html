@@ -1,0 +1,65 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+@(title: String, session: Session)(content: Html)
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>@title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/main.css")'>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+        <!------ Used this code from WPO ---------->
+
+    <div class="container-fluid">
+
+        <nav class="navbar navbar-default">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                    @if(session.get(models.Global.SESSION_USERNAME_KEY).isEmpty) {
+                        <li class="nav navbar-nav navbar-left"><a href="@routes.PostController.showPostNotFunction">All Posts</a></li>
+                        <li><a href="@routes.UserController.showLoginForm">Login</a></li>
+                        <li><a href="@routes.UserController.showRegisterForm">Register</a></li>
+                    } else {
+                        <li class="nav navbar-nav navbar-left"><a href="@routes.PostController.listPosts">Posts</a></li>
+                        <li><a href="@routes.PostController.addNewPostPost">Add New Post</a></li>
+                        <li><a href="@routes.AuthenticatedUserController.logout">Logout</a></li>
+
+
+                    }
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav><!-- /.navbar -->
+
+    </div><!-- /.container-fluid -->
+    @content
+</body>
+
+</html>

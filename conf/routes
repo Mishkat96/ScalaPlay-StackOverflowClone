@@ -1,0 +1,42 @@
+
+
+GET / controllers.HomeController.index
+
+GET /assets/*file controllers.Assets.versioned(path="/public", file: Asset)
+
+# user/admin login
+GET /login controllers.UserController.showLoginForm
+GET /register controllers.UserController.showRegisterForm
+POST /doLogin controllers.UserController.processLoginAttempt
+POST /doRegister controllers.UserController.processRegisterAttempt
+
+
+GET /logout controllers.AuthenticatedUserController.logout
+GET /landingPage controllers.LandingPageController.showLandingPage
+
+
+
+
+GET /posts controllers.PostController.listPosts
+
+GET /addNewPost controllers.PostController.addNewPost(title, text, code)
+
+GET /addNewPostPost controllers.PostController.addNewPostPost
+
+GET /vote controllers.PostController.voteIncreament(id: Int)
+GET /unvote controllers.PostController.voteDecreament(id: Int)
+
+GET /addAnswers controllers.PostController.addAnswers(answer, answerCode, id: Int)
+GET /addComment controllers.PostController.addComment(comment, id: Int)
+
+GET /addNewCommentPost controllers.PostController.addNewCommentPost(id: Int)
+GET /addNewComment controllers.PostController.addNewComment(id: Int)
+
+GET /sortByDate controllers.PostController.sortByDate
+GET /sortByVote controllers.PostController.sortByVote
+
+GET /sortByDateLogout controllers.PostController.sortByDateLogout
+GET /sortByVoteLogout controllers.PostController.sortByVoteLogout
+
+GET /showPostNotFunction controllers.PostController.showPostNotFunction
+

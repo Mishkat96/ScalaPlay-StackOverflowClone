@@ -1,0 +1,63 @@
+@(posts: List[Post])(implicit session: Session)
+
+
+
+@main("", session) {
+  <div class="wrapper fadeInUp">
+    <div>
+      <div id="sorting">
+        <a href="@routes.PostController.sortByDateLogout"> Sort By Date </a>
+        <br>
+        <a href="@routes.PostController.sortByVoteLogout"> Sort By Vote </a>
+      </div>
+
+
+      @for(post <- posts) {
+        <div id="test">
+          <div>@post.date</div>
+
+          <div id="titletextcode">
+            <div id="posttitle">@post.title</div>
+            <div id="posttext">@post.text</div>
+            <div id="postcode">@post.code</div>
+          </div>
+          <div id="postvote">
+
+
+            <br>
+            <a>@post.vote</a>
+            <br>
+
+            <br>
+          </div>
+          <div>
+            <div>
+              <h5>All Answers</h5>
+            @if(post.answers != null) {
+              @for(a <- post.answers) {
+                <div id="postcomment">@a</div>
+              }
+            }
+            </div>
+            <div>
+              <h5>All Comments</h5>
+              @if(post.comment != null) {
+                @for(a <- post.comment) {
+                  <div id="postcomment">@a</div>
+                }
+              }
+            </div>
+
+          </div>
+          <br>
+          <br>
+
+          <br>
+        </div>
+
+
+      }
+
+    </div>
+  </div>
+}

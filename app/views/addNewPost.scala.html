@@ -1,0 +1,17 @@
+@(username: String)(implicit session: Session)
+
+@main("All Post", session) {
+<div class="something">
+
+    <form method="get" action="addNewPost" class="ml-10" >
+
+        <input style="height:50px;font-size:14pt;" type="text" placeholder="Enter Your Title here" name="title" required>
+        <input style="height:100px;font-size:14pt;" type="text" placeholder="Enter Your problem here" name="code" required>
+        <input style="height:100px;font-size:14pt;" type="text" placeholder="Enter Your Code here" name="text" required>
+        <input type="text" value="@username" name="username" style="display: none;">
+
+        <input type="submit" value="Add Post">
+    </form>
+</div>
+}
+

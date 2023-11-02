@@ -1,0 +1,74 @@
+@(posts: List[Post])(implicit session: Session)
+
+
+
+@main("All Post", session) {
+    <div class="wrapper fadeInUp">
+        <div>
+            <div id="sorting">
+                <a href="@routes.PostController.sortByDate"> Sort By Date </a>
+                <br>
+                <a href="@routes.PostController.sortByVote"> Sort By Vote </a>
+            </div>
+
+            @if(session.get(models.Global.SESSION_USERNAME_KEY)) {
+                @for(post <- posts) {
+                    <div id="test">
+                        <div>@post.date</div>
+
+
+                            <div id="titletextcode">
+                                <div id="posttitle">
+                                    <h5>Post @post.id</h5>
+                                    <div>@post.title</div>
+                                </div>
+                                <br>
+                                <div id="posttext">
+                                    <h5>Text Part of the Post</h5>
+                                    <div>@post.text</div>
+                                </div>
+                                <div id="postcode">
+                                    <h5>Code Part of the Post</h5>
+                                    <div>@post.code</div>
+                                </div>
+                            </div>
+                            <div id="postvote">
+
+                                <a href="@routes.PostController.voteIncreament(post.id)">vote</a>
+                                <br>
+                                <a>@post.vote</a>
+                                <br>
+                                <a href="@routes.PostController.voteDecreament(post.id)">unvote</a>
+                                <br>
+                            </div>
+                            <div>
+                                <div>
+                                    <h5>Answer with Code</h5>
+                            @if(post.answers != null) {
+                                @for(a <- post.answers) {
+                                        <div id="postcomment">@a</div>
+                                }
+                            }
+                            </div>
+                                <div>
+                                    <h5>All Comments</h5>
+                                    @if(post.comment != null) {
+                                        @for(a <- post.comment) {
+                                            <div id="postcomment">@a</div>
+                                        }
+                                    }
+                                </div>
+                            <a href="@routes.PostController.addNewCommentPost(post.id)">Add Answer</a>
+                                <br>
+                                <a href="@routes.PostController.addNewComment(post.id)">Add Comment </a>
+                            </div>
+
+                        <br>
+                    </div>
+
+
+                }
+            }
+        </div>
+    </div>
+}
